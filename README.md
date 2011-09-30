@@ -14,6 +14,7 @@ requests:
 ## Authenticating
 
 **Request**
+
 ```
 POST /authorize HTTP/1.1
 Host: ssedap
@@ -24,6 +25,7 @@ username=[LDAP user]&password=[LDAP password]
 ```
 
 **Response**
+
 ```
 {
 success: (true|false),
@@ -37,6 +39,7 @@ error: "some text" # will only be present in the event of an error (when success
 **_You must be an officer/admin to retrieve information via this method._**
 
 **Request**
+
 ```
 POST /userinfo HTTP/1.1
 Host: ssedap
@@ -47,6 +50,7 @@ username=[LDAP user]&password=[LDAP password]&userToQuery=[LDAP user to look up]
 ```
 
 **Response**
+
 ```
 {
 success: (true|false),
