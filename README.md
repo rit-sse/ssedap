@@ -11,7 +11,7 @@ the SSEDAP server.
 If your SSEDAP server is at `https://ssedap`, then you'd perform the following 
 requests:
 
-## Authenticating
+### Authenticating
 
 **Request**
 
@@ -34,7 +34,7 @@ username=[LDAP user]&password=[LDAP password]
 }
 ```
 
-## Requesting information about a user
+### Requesting information about a user
 
 **_You must be an officer/admin to retrieve information via this method._**
 
