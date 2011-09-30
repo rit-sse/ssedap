@@ -58,8 +58,8 @@ username=[LDAP user]&password=[LDAP password]&userToQuery=[LDAP user to look up]
   queriedUser: [LDAP user you're attempting to look up],
   userInfo: {
               k: "v",
-              k2: "v2",   # userInfo is a JSON object with the user's meta info
-              ...
+              k2: "v2",   # userInfo = JSON object with the user's meta info, 
+              ...         # and is only present if success==true
             },
   error: "some text" # will only be present in the event of an error (when success==false)
 }
