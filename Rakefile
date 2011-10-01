@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Ssedap::Application.load_tasks
+SSEDAP::Application.load_tasks
