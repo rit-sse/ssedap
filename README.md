@@ -21,7 +21,7 @@ Host: ssedap
 Content-Type: application/x-www-form-urlencoded
 Content-length: [length of data]
 
-username=[LDAP user]&password=[LDAP password]
+username=ldap_user123&password=supersecret
 ```
 
 **Response**
@@ -29,7 +29,7 @@ username=[LDAP user]&password=[LDAP password]
 ```
 {
   success: (true|false),
-  user: [LDAP user],
+  user: "ldap_user123",
   error: "some text" # will only be present in the event of an error (when success==false)
 }
 ```
@@ -46,7 +46,7 @@ Host: ssedap
 Content-Type: application/x-www-form-urlencoded
 Content-length: [length of data]
 
-username=[LDAP user]&password=[LDAP password]&userToQuery=[LDAP user to look up]
+username=ldap_user123&password=supersecret&lookupUser=ldap_user456
 ```
 
 **Response**
@@ -54,12 +54,12 @@ username=[LDAP user]&password=[LDAP password]&userToQuery=[LDAP user to look up]
 ```
 {
   success: (true|false),
-  user: [LDAP user you're authenticating as],
-  queriedUser: [LDAP user you're attempting to look up],
+  user: "ldap_user123",
+  queriedUser: "ldap_user456",
   userInfo: {
-              k: "v",
-              k2: "v2",   # userInfo = JSON object with the user's meta info, 
-              ...         # and is only present if success==true
+              somekey: "somevalue",
+              somekey2: "somevalue2",   # userInfo = JSON object with the user's meta info, 
+              ...                       # and is only present if success==true
             },
   error: "some text" # will only be present in the event of an error (when success==false)
 }
