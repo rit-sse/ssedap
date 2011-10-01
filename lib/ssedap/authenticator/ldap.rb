@@ -1,6 +1,7 @@
 module SSEDAP
   module Authenticator
     class LDAP < Base
+      # all of these are **required** for successful authentication
       attr_accessor :host, :port, :encryption, :base, :uid
 
       # can optionally set necessary params at the time of instantiation
