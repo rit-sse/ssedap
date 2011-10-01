@@ -16,7 +16,7 @@ requests:
 **Request**
 
 ```
-POST /authorize HTTP/1.1
+POST /api/authorize HTTP/1.1
 Host: ssedap
 Content-Type: application/x-www-form-urlencoded
 Content-length: [length of data]
@@ -41,7 +41,7 @@ username=your_ldap_user123&password=supersecret
 **Request**
 
 ```
-POST /userinfo HTTP/1.1
+POST /api/userinfo HTTP/1.1
 Host: ssedap
 Content-Type: application/x-www-form-urlencoded
 Content-length: [length of data]

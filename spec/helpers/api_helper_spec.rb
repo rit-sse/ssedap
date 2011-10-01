@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 # Specs in this file have access to a helper object that includes
-# the SessionsHelper. For example:
+# the ApiHelper. For example:
 #
-# describe SessionsHelper do
+# describe ApiHelper do
 #   describe "string concat" do
 #     it "concats two strings with spaces" do
 #       helper.concat_strings("this","that").should == "this that"
 #     end
 #   end
 # end
-describe SessionsHelper do
+describe ApiHelper do
   pending "add some examples to (or delete) #{__FILE__}"
 end

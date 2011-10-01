@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class ApiController < ApplicationController
   def authorize
     resp = { success: true, user: params["username"] }
 
