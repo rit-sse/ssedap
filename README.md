@@ -27,7 +27,7 @@ The following examples assume your server is at https://ssedap.local
 POST /api/authorize HTTP/1.1
 Host: ssedap.local
 Content-Type: application/x-www-form-urlencoded
-Content-length: [length of data]
+Content-Length: [length of data]
 
 username=your_ldap_user123&password=supersecret
 ```
@@ -52,7 +52,7 @@ username=your_ldap_user123&password=supersecret
 POST /api/userinfo HTTP/1.1
 Host: ssedap.local
 Content-Type: application/x-www-form-urlencoded
-Content-length: [length of data]
+Content-Length: [length of data]
 
 username=your_ldap_user123&password=supersecret&lookupUser=other_ldap_user456
 ```
