@@ -13,10 +13,11 @@ The following examples assume your server is at https://ssedap.local
 ### Response Codes
 
 ```
-200 OK           - Success!
-400 Bad Request  - Not using the API via SSL
-401 Unauthorized - Incorrect/missing credentials
-404 Not Found    - API method not found
+200 OK                     - Success!
+400 Bad Request            - Not using the API via SSL
+401 Unauthorized           - Incorrect/missing credentials - see "error" message for details
+404 Not Found              - API method not found
+500 Internal Server Error  - SSEDAP failure - see "error" message for details
 ```
 
 ## Authenticating
