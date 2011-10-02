@@ -11,6 +11,15 @@ the SSEDAP server.
 If your SSEDAP server is at `https://ssedap`, then you'd perform the following 
 requests:
 
+### Response Codes
+
+```
+200 OK           - Success!
+400 Bad Request  - Not using the API via SSL
+401 Unauthorized - Incorrect/missing credentials
+404 Not Found    - API method not found
+```
+
 ### Authenticating
 
 **Request**
