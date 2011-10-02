@@ -1,17 +1,18 @@
-class ApiController < ApplicationController
+class ApiController < ActionController::Base
   layout nil
 
   OK_STATUS = 200
   NO_SSL_STATUS = 400
   UNAUTHORIZED_STATUS = 401
   UNDEFINED_METHOD_STATUS = 404
+  INTERNAL_SERVER_ERROR_STATUS = 500
 
   def no_ssl_error
-    render json: { error: "#{params[:method]} may only be accessed via SSL." }, status: 400
+    render json: { error: "The API method '#{params[:method]}' may only be accessed via SSL." }, status: 400
   end
 
   def undefined_method
-    render json: { error: "#{params[:method]} is not defined." }, status: 404
+    render json: { error: "The API method '#{params[:method]}' is not defined." }, status: 404
   end
 
   def authorize
@@ -27,10 +28,16 @@ class ApiController < ApplicationController
     }
     ldap_auth = SSEDAP::Authenticator::LDAP.new options
 
-    unless ldap_auth.authenticate params["username"], params["password"]
+    begin
+      unless ldap_auth.authenticate(username: params["username"], password: params["password"])
+        resp[:success] = false
+        resp[:error] = "LDAP error #{ldap_auth.op_result.code}: #{ldap_auth.op_result.message}"
+        resp_status = UNAUTHORIZED_STATUS
+      end
+    rescue
       resp[:success] = false
-      resp[:error] = ldap_auth.op_result
-      resp_status = UNAUTHORIZED_STATUS
+      resp[:error] = $!.to_s
+      resp_status = INTERNAL_SERVER_ERROR_STATUS
     end
 
     render json: resp, status: resp_status

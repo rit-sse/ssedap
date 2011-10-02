@@ -1,3 +1,5 @@
+require 'ssedap/authenticator/ldap'
+
 module SSEDAP
   module Authenticator
     class Base

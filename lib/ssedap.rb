@@ -1,0 +1,1 @@
+require 'ssedap/authenticator'

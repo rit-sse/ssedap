@@ -1,3 +1,5 @@
+require 'ssedap/authenticator'
+
 module SSEDAP
   module Authenticator
     class LDAP < Base
@@ -10,7 +12,7 @@ module SSEDAP
       #                               port: 636, encryption: :simple_tls)
       def initialize(*args)
         if args.last.is_a?(Hash)
-          args.each do |k,v|
+          args.last.each do |k,v|
             self.send("#{k}=", v) if self.respond_to?("#{k}=".to_sym)
           end
         end

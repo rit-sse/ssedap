@@ -38,8 +38,15 @@ username=your_ldap_user123&password=supersecret
 {
   "success": (true|false),
   "user": "your_ldap_user123",
-  "error": "some text"                      # will only be present in the event of an error (when success==false)
+  "userInfo": {
+    "somekey": "somevalue",
+    ...
+  },
+  "error": "some text"
 }
+
+"error" will only be present when success == false.
+"userInfo" will only be present when success == true.
 ```
 
 ## Requesting information about a user
@@ -65,11 +72,13 @@ username=your_ldap_user123&password=supersecret&lookupUser=other_ldap_user456
   "user": "your_ldap_user123",
   "queriedUser": "other_ldap_user456",
   "userInfo": {
-                "somekey": "somevalue",     # userInfo = JSON object with the user's meta info,
-                ...                         # and is only present if success==true
-              },
-  "error": "some text"                      # will only be present in the event of an error (when success==false)
+    "somekey": "somevalue",
+    ...
+  },
+  "error": "some text"
 }
-```
 
+"error" will only be present when success == false.
+"userInfo" will only be present when success == true.
+```
 
