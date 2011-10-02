@@ -38,7 +38,7 @@ username=your_ldap_user123&password=supersecret
 {
   "success": (true|false),
   "user": "your_ldap_user123",
-  "error": "some text" # will only be present in the event of an error (when success==false)
+  "error": "some text"                      # will only be present in the event of an error (when success==false)
 }
 ```
 
