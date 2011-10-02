@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+puts 'Emptying the Mongo database...'
+Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
+
+puts 'Setting up roles...'
+%w(Admin Officer Committee\ Head Member).each do |role_name|
+  role = Role.create name: role_name
+  puts 'New role created: ' << role.name
+end
+

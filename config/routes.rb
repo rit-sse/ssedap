@@ -1,5 +1,7 @@
 SSEDAP::Application.routes.draw do
 
+  resources :directory_users
+
   protocol = ({ protocol: 'https' } if Rails.env.production?) || {}
   scope :constraints => protocol do
     match '/api/:action', controller: 'api', via: [:post]

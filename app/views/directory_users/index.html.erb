@@ -1,0 +1,23 @@
+<h1>Listing directory_users</h1>
+
+<table>
+  <tr>
+    <th>Username</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @directory_users.each do |directory_user| %>
+  <tr>
+    <td><%= directory_user.username %></td>
+    <td><%= link_to 'Show', directory_user %></td>
+    <td><%= link_to 'Edit', edit_directory_user_path(directory_user) %></td>
+    <td><%= link_to 'Destroy', directory_user, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Directory user', new_directory_user_path %>
