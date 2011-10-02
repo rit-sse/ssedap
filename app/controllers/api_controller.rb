@@ -24,6 +24,9 @@ class ApiController < ActionController::Base
       resp[:success] = false
       resp[:error] = result[:message]
       resp_status = result[:status]
+    else
+      # look up params["username"] in mongo
+      resp[:user_info] = {}
     end
 
     render json: resp, status: resp_status
