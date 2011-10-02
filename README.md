@@ -65,9 +65,9 @@ username=your_ldap_user123&password=supersecret&lookupUser=other_ldap_user456
   "user": "your_ldap_user123",
   "queriedUser": "other_ldap_user456",
   "userInfo": {
-              "somekey": "somevalue",     # userInfo = JSON object with the user's meta info,
-              ...                       # and is only present if success==true
-            },
+                "somekey": "somevalue",     # userInfo = JSON object with the user's meta info,
+                ...                         # and is only present if success==true
+              },
   "error": "some text"                    # will only be present in the event of an error (when success==false)
 }
 ```
