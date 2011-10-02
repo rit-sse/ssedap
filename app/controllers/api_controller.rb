@@ -19,6 +19,36 @@ class ApiController < ActionController::Base
     resp = { success: true, user: params["username"] }
     resp_status = OK_STATUS
 
+    result = ldap_authenticate(params["username"], params["password"])
+    unless result[:success]
+      resp[:success] = false
+      resp[:error] = result[:message]
+      resp_status = result[:status]
+    end
+
+    render json: resp, status: resp_status
+  end
+
+  def userinfo
+    resp = { success: true, user: params["username"], lookup: params["lookup"] }
+    resp_status = OK_STATUS
+
+    result = ldap_authenticate(params["username"], params["password"])
+    unless result[:success]
+      resp[:success] = false
+      resp[:error] = result[:message]
+      resp_status = result[:status]
+    else
+      # look up params["lookup"] in mongo
+      resp[:user_info] = {}
+    end
+
+    render json: resp, status: resp_status
+  end
+
+private
+
+  def ldap_authenticate(username, password)
     options = {
       host: "ldap.rit.edu",
       port: 636,
@@ -26,21 +56,26 @@ class ApiController < ActionController::Base
       base: "ou=people,dc=rit,dc=edu",
       uid: "uid"
     }
+
     ldap_auth = SSEDAP::Authenticator::LDAP.new options
 
+    success = true
+    status_code = OK_STATUS
+    error_string = ""
+
     begin
-      unless ldap_auth.authenticate(username: params["username"], password: params["password"])
-        resp[:success] = false
-        resp[:error] = "LDAP error #{ldap_auth.op_result.code}: #{ldap_auth.op_result.message}"
-        resp_status = UNAUTHORIZED_STATUS
+      success = ldap_auth.authenticate(username: username, password: password)
+      unless success
+        status_code = UNAUTHORIZED_STATUS
+        error_string = "LDAP error #{ldap_auth.op_result.code}: #{ldap_auth.op_result.message}"
       end
     rescue
-      resp[:success] = false
-      resp[:error] = $!.to_s
-      resp_status = INTERNAL_SERVER_ERROR_STATUS
+      success = false
+      status_code = INTERNAL_SERVER_ERROR_STATUS
+      error_string = $!.to_s
     end
 
-    render json: resp, status: resp_status
+    { success: success, status: status_code, message: error_string }
   end
 end
 

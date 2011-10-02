@@ -38,7 +38,7 @@ username=your_ldap_user123&password=supersecret
 {
   "success": (true|false),
   "user": "your_ldap_user123",
-  "userInfo": {
+  "user_info": {
     "somekey": "somevalue",
     ...
   },
@@ -46,12 +46,15 @@ username=your_ldap_user123&password=supersecret
 }
 
 "error" will only be present when success == false.
-"userInfo" will only be present when success == true.
+"user_info" will only be present when success == true.
 ```
 
 ## Requesting information about a user
 
 **_You must be an officer/admin to retrieve information via this method._**
+
+**NOTE:** Requests for a user that doesn't exist will result in a 200 OK and an empty 
+"user_info" dictionary.
 
 ### Request
 
@@ -61,7 +64,7 @@ Host: ssedap.local
 Content-Type: application/x-www-form-urlencoded
 Content-Length: [length of data]
 
-username=your_ldap_user123&password=supersecret&lookupUser=other_ldap_user456
+username=your_ldap_user123&password=supersecret&lookup=other_ldap_user456
 ```
 
 ### Response
@@ -70,8 +73,8 @@ username=your_ldap_user123&password=supersecret&lookupUser=other_ldap_user456
 {
   "success": (true|false),
   "user": "your_ldap_user123",
-  "queriedUser": "other_ldap_user456",
-  "userInfo": {
+  "lookup": "other_ldap_user456",
+  "user_info": {
     "somekey": "somevalue",
     ...
   },
@@ -79,6 +82,6 @@ username=your_ldap_user123&password=supersecret&lookupUser=other_ldap_user456
 }
 
 "error" will only be present when success == false.
-"userInfo" will only be present when success == true.
+"user_info" will only be present when success == true.
 ```
 
