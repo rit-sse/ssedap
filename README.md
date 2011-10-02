@@ -8,8 +8,7 @@ SSE Directory Access Protocol (LDAP proxy + meta information)
 via plain HTTP is both insecure, and will result in an error response from 
 the SSEDAP server.
 
-If your SSEDAP server is at `https://ssedap`, then you'd perform the following 
-requests:
+The following examples assume your server is at https://ssedap.local
 
 ### Response Codes
 
@@ -26,7 +25,7 @@ requests:
 
 ```
 POST /api/authorize HTTP/1.1
-Host: ssedap
+Host: ssedap.local
 Content-Type: application/x-www-form-urlencoded
 Content-length: [length of data]
 
@@ -51,7 +50,7 @@ username=your_ldap_user123&password=supersecret
 
 ```
 POST /api/userinfo HTTP/1.1
-Host: ssedap
+Host: ssedap.local
 Content-Type: application/x-www-form-urlencoded
 Content-length: [length of data]
 
