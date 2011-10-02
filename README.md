@@ -19,9 +19,9 @@ The following examples assume your server is at https://ssedap.local
 404 Not Found    - API method not found
 ```
 
-### Authenticating
+## Authenticating
 
-**Request**
+### Request
 
 ```
 POST /api/authorize HTTP/1.1
@@ -32,7 +32,7 @@ Content-length: [length of data]
 username=your_ldap_user123&password=supersecret
 ```
 
-**Response**
+### Response
 
 ```
 {
@@ -42,11 +42,11 @@ username=your_ldap_user123&password=supersecret
 }
 ```
 
-### Requesting information about a user
+## Requesting information about a user
 
 **_You must be an officer/admin to retrieve information via this method._**
 
-**Request**
+### Request
 
 ```
 POST /api/userinfo HTTP/1.1
@@ -57,7 +57,7 @@ Content-length: [length of data]
 username=your_ldap_user123&password=supersecret&lookupUser=other_ldap_user456
 ```
 
-**Response**
+### Response
 
 ```
 {
