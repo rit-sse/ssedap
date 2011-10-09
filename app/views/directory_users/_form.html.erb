@@ -15,6 +15,10 @@
     <%= f.label :username %><br />
     <%= f.text_field :username %>
   </div>
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.collection_select :role_id, Role.order_by(:name, :asc), :id, :name, include_blank: "None" %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

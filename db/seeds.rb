@@ -15,3 +15,10 @@ puts 'Setting up roles...'
   puts 'New role created: ' << role.name
 end
 
+%w(cjk7752).each do |user|
+  user = DirectoryUser.create username: user
+  user.role = Role.where(name: "Admin").first
+  user.save
+  puts 'New directory user created: ' << user.username
+end
+
