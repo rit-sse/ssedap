@@ -25,8 +25,15 @@ class ApiController < ActionController::Base
       resp[:error] = result[:message]
       resp_status = result[:status]
     else
-      # look up params["username"] in mongo
-      resp[:user_info] = {}
+      user = DirectoryUser.where(username: params["username"]).first
+
+      if user.nil?
+        resp[:success] = false
+        resp[:error] = "User '#{params["username"]}' not found in SSEDAP."
+        resp_status = UNAUTHORIZED_STATUS
+      else
+        resp[:user_info] = user.auth_attributes
+      end
     end
 
     render json: resp, status: resp_status
