@@ -6,5 +6,8 @@ class Role
   def directory_users
     DirectoryUser.where(role_id: self.id).to_a
   end
+
+  def is_admin? ; name == "Admin" ; end
+  def is_officer? ; name == "Officer" ; end
 end
 
