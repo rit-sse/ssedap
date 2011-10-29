@@ -12,6 +12,7 @@ gem 'mongoid'
 # Auth
 # gem 'omniauth'
 gem "net-ldap"
+gem "ssedap-client"
 
 # Gems used only for assets and not required
 # in production environments by default.
