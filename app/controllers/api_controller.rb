@@ -82,7 +82,7 @@ class ApiController < ActionController::Base
     render json: resp, status: resp_status
   end
 
-private
+  private
 
   def ldap_authenticate(username, password)
     options = {
@@ -100,10 +100,22 @@ private
     error_string = ""
 
     begin
-      success = ldap_auth.authenticate(username: username, password: password)
-      unless success
+      # WHAT THE HELL
+      # some ldap servers apparently let you bind with any old username
+      # if you give it a blank password...even if the username doesn't exist 
+      # in the ldap directory...so we need this check
+      unless password.to_s.empty?
+        success = ldap_auth.authenticate(username: username, password: password)
+        
+        unless success
+          status_code = UNAUTHORIZED_STATUS
+          # error_string = "LDAP error #{ldap_auth.op_result.code}: #{ldap_auth.op_result.message}"
+          error_string = "LDAP error: #{ldap_auth.op_result.message}"
+        end
+      else
+        success = false
         status_code = UNAUTHORIZED_STATUS
-        error_string = "LDAP error #{ldap_auth.op_result.code}: #{ldap_auth.op_result.message}"
+        error_string = "LDAP error: Invalid Credentials"
       end
     rescue
       success = false
