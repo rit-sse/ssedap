@@ -4,16 +4,16 @@ class ApiController < ActionController::Base
   OK_STATUS = 200
   NO_SSL_STATUS = 400
   UNAUTHORIZED_STATUS = 401
-  UNDEFINED_METHOD_STATUS = 404
-  CALM_STATUS = 420
+  NOT_FOUND_STATUS = 404
+  UNDEFINED_METHOD_STATUS = 501
   INTERNAL_SERVER_ERROR_STATUS = 500
 
   def no_ssl_error
-    render json: { error: "The API method '#{params[:method]}' may only be accessed via SSL." }, status: 400
+    render json: { error: "The API method '#{params[:method]}' may only be accessed via SSL." }, status: NO_SSL_STATUS
   end
 
   def undefined_method
-    render json: { error: "The API method '#{params[:method]}' is not defined." }, status: 404
+    render json: { error: "The API method '#{params[:method]}' is not defined." }, status: UNDEFINED_METHOD_STATUS
   end
 
   def authorize
@@ -71,7 +71,7 @@ class ApiController < ActionController::Base
         if lookup.nil?
           resp[:success] = false
           resp[:error] = "User '#{params["lookup"]}' not found in SSEDAP."
-          resp_status = CALM_STATUS
+          resp_status = NOT_FOUND_STATUS
         else
           resp[:user_info] = lookup.auth_attributes
         end
