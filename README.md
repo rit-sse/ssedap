@@ -17,8 +17,8 @@ The following examples assume your server is at https://ssedap.local
 400 Bad Request            - Not using the API via SSL
 401 Unauthorized           - Incorrect/missing credentials - see "error" message for details
 404 Not Found              - Successful authentication, but server resource not found
-501 Not Implemented        - API method not found
 500 Internal Server Error  - SSEDAP failure - see "error" message for details
+501 Not Implemented        - API method not found
 ```
 
 ## Authenticating
