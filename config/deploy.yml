@@ -1,0 +1,17 @@
+defaults: &defaults
+  domain: "sse.se.rit.edu"
+  repository: "https://github.com/codykrieger/ssedap.git"
+  rake_env:
+    RAILS_ENV: 'production'
+
+staging:
+  <<: *defaults
+  deploy_to: "~/staging.ssedap"
+  post_setup_script: 'script/post-setup-staging.sh'
+
+production:
+  <<: *defaults
+  deploy_to: "~/ssedap"
+  post_setup_script: 'script/post-setup-production.sh'
+  post_deploy_script: 'script/post-deploy.sh'
+

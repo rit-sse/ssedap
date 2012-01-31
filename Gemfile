@@ -34,10 +34,10 @@ gem 'rspec-rails', :group => [:development, :test]
 gem 'factory_girl_rails', :group => [:development, :test]
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'whiskey_disk', group: :development
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
