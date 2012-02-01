@@ -7,6 +7,7 @@
 bundle install --quiet --binstubs --shebang ruby-local-exec
 
 RAILS_ENV=production rake db:create
+RAILS_ENV=production rake db:seed
 
 # make our directories and symlinks
 rm -rf "$APP_DIR/tmp/pids" "$APP_DIR/log"
