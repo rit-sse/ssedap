@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SSEDAP</title>
+  <title><% content_for?(:title) ? "#{yield(:title)} &mdash; SSEDAP" : "SSEDAP" %></title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+  <% if content_for? :title %>
+    <h1 id="title"><%= yield :title %></h1>
+  <% end %>
+
+  <% if signed_in? %>
+    <div style="float: right;">
+      <%= link_to "log out", auth_logout_path %>
+    </div>
+  <% end %>
+
+  <div class="clear"></div>
+
+  <%= yield %>
 
 </body>
 </html>

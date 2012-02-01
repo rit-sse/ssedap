@@ -5,6 +5,10 @@ body {
   font-size: 13px;
   line-height: 18px; }
 
+h1#title {
+  display: inline-block;
+  float: left; }
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -54,3 +58,6 @@ div {
   ul li {
     font-size: 12px;
     list-style: square; } }
+
+.clear { clear: both; }
+
