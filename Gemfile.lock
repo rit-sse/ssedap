@@ -146,6 +146,7 @@ GEM
       ffi (~> 1.0.9)
       multi_json (~> 1.0.4)
       rubyzip
+    settingslogic (2.0.8)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -189,6 +190,7 @@ DEPENDENCIES
   rails (= 3.2.1)
   rspec-rails
   sass-rails (~> 3.2.3)
+  settingslogic
   ssedap-client
   therubyracer
   uglifier (>= 1.0.3)

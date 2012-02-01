@@ -1,4 +1,4 @@
-class DirectoryUsersController < ApplicationController
+class DirectoryUsersController < AdminController
   # GET /directory_users
   # GET /directory_users.json
   def index

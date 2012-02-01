@@ -1,0 +1,13 @@
+defaults: &defaults
+  ssedap_location: "http://ssedap.dev"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  ssedap_location: "https://ssedap"
+

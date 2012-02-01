@@ -1,0 +1,20 @@
+<h1 class="centered">AUTHORIZE YOSELF</h1>
+
+<div class="centered">
+  <%= form_tag({ action: "authorize" }, class: "centered autofocus") do %>
+
+  <div class="field bigtext">
+    <%= label_tag :username %><br />
+    <%= text_field_tag :username %>
+  </div>
+  <div class="field bigtext">
+    <%= label_tag :password %><br />
+    <%= password_field_tag :password %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Submit", class: "medium super button" %>
+  </div>
+</div>
+
+<% end %>
+

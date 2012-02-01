@@ -1,5 +1,10 @@
 SSEDAP::Application.routes.draw do
 
+  match '/auth', to: 'auth#index'
+  match '/auth/logout', to: 'auth#logout'
+  post '/auth(/:action)', controller: 'auth'
+
+  match '/dashboard', to: 'dashboard#index'
   resources :directory_users
 
   protocol = ({ protocol: 'https' } if Rails.env.production?) || {}
