@@ -3,7 +3,7 @@ APP_ROOT = File.expand_path(File.dirname(File.dirname(__FILE__)))
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../Gemfile', File.dirname(__FILE__))
 require 'bundler/setup'
 
-worker_processes 2
+worker_processes 3
 working_directory APP_ROOT
 
 preload_app true
