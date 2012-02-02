@@ -9,6 +9,7 @@ class ApiController < ActionController::Base
   INTERNAL_SERVER_ERROR_STATUS = 500
 
   rescue_from Exception do |exc|
+    Rails.logger.info "Exception in ApiController: #{exc}\n#{exc.backtrace}"
     render json: { error: "Server error: #{exc}" }, status: INTERNAL_SERVER_ERROR_STATUS
   end
 
@@ -22,6 +23,8 @@ class ApiController < ActionController::Base
 
     result = ldap_authenticate(params["username"], params["password"])
     unless result[:success]
+      Rails.logger.info "User #{params["username"]} failed to authenticate."
+
       resp[:success] = false
       resp[:error] = result[:message]
       resp_status = result[:status]
@@ -29,10 +32,14 @@ class ApiController < ActionController::Base
       user = DirectoryUser.where(username: params["username"]).first
 
       if user.nil?
+        Rails.logger.info "User #{params["username"]} not found in SSEDAP."
+
         resp[:success] = false
         resp[:error] = "User '#{params["username"]}' not found in SSEDAP."
         resp_status = UNAUTHORIZED_STATUS
       else
+        Rails.logger.info "User #{params["username"]} successfully authenticated."
+
         resp[:user_info] = user.auth_attributes
       end
     end
@@ -106,7 +113,7 @@ class ApiController < ActionController::Base
       # in the ldap directory...so we need this check
       unless password.to_s.empty?
         success = ldap_auth.authenticate(username: username, password: password)
-        
+
         unless success
           status_code = UNAUTHORIZED_STATUS
           # error_string = "LDAP error #{ldap_auth.op_result.code}: #{ldap_auth.op_result.message}"
