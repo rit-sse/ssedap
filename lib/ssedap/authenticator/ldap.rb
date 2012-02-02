@@ -2,7 +2,7 @@ require 'ssedap/authenticator'
 
 module SSEDAP
   module Authenticator
-    class LDAP < Base
+    class LDAP
       # all of these are **required** for successful authentication
       attr_accessor :host, :port, :encryption, :base, :uid
 
