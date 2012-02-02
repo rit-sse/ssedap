@@ -8,6 +8,10 @@ class ApiController < ActionController::Base
   UNDEFINED_METHOD_STATUS = 501
   INTERNAL_SERVER_ERROR_STATUS = 500
 
+  rescue_from Exception do |exc|
+    render json: { error: "Server error: #{exc}" }, status: INTERNAL_SERVER_ERROR_STATUS
+  end
+
   def undefined_method
     render json: { error: "The API method '#{params[:method]}' is not defined." }, status: UNDEFINED_METHOD_STATUS
   end
