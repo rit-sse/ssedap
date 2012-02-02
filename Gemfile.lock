@@ -151,7 +151,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    ssedap-client (0.0.2)
+    ssedap-client (0.0.3)
       json
       patron
     term-ansicolor (1.0.7)
