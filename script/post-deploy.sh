@@ -6,6 +6,10 @@
 # deploying, oddly enough...
 bundle install --quiet --binstubs --shebang ruby-local-exec
 
+# re-symlink log dir
+rm -rf "$APP_DIR/log"
+ln -s "$APP_SHARED/log" "$APP_DIR/log"
+
 RAILS_ENV=production bundle exec rake assets:precompile # --trace
 RAILS_ENV=production rake db:migrate
 
