@@ -1,13 +1,13 @@
 defaults: &defaults
-  ssedap_location: "http://ssedap.dev"
+  ssedap_location: "https://ssedap"
 
 development:
   <<: *defaults
+  ssedap_location: "http://ssedap.dev"
 
 test:
   <<: *defaults
 
 production:
   <<: *defaults
-  ssedap_location: "https://ssedap"
 
