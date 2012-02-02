@@ -8,10 +8,6 @@ class ApiController < ActionController::Base
   UNDEFINED_METHOD_STATUS = 501
   INTERNAL_SERVER_ERROR_STATUS = 500
 
-  def no_ssl_error
-    render json: { error: "The API method '#{params[:method]}' may only be accessed via SSL." }, status: NO_SSL_STATUS
-  end
-
   def undefined_method
     render json: { error: "The API method '#{params[:method]}' is not defined." }, status: UNDEFINED_METHOD_STATUS
   end
