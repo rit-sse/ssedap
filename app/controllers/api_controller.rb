@@ -17,6 +17,52 @@ class ApiController < ActionController::Base
     render json: { error: "The API method '#{params[:method]}' is not defined." }, status: UNDEFINED_METHOD_STATUS
   end
 
+  def createAnon
+    resp = { success: true, user: params["username"] }
+    resp_status = OK_STATUS
+
+    result = ldap_authenticate(params["username"], params["password"])
+    unless result[:success]
+      Rails.logger.info "User #{params["username"]} failed to authenticate."
+
+      resp[:success] = false
+      resp[:error] = result[:message]
+      resp_status = result[:status]
+    else
+      user = DirectoryUser.where(username: params["username"]).first
+
+      if user.nil?
+        Rails.logger.info "Creating user #{params["username"]} in SSEDAP."
+
+        visitor_role = Role.where(name: "Visitor").first
+
+        if visitor_role.nil?
+          Rails.logger.info "Visitor role does not exist, cannot allow anon creation."
+        else
+          user = DirectoryUser.new
+          user.username = params["username"]
+          user.role = visitor_role
+          if user.save
+            Rails.logger.info "Created user #{params["username"]} as visitor."
+
+            resp[:user_info] = user.auth_attributes
+          else
+            Rails.logger.info "Failed to create new user."
+
+            resp[:success] = false
+            resp_status = INTERNAL_SERVER_ERROR_STATUS
+          end
+        end
+      else
+        Rails.logger.info "User #{params["username"]} already authenticated."
+
+        resp[:user_info] = user.auth_attributes
+      end
+    end
+
+    render json: resp, status: resp_status
+  end
+
   def authorize
     resp = { success: true, user: params["username"] }
     resp_status = OK_STATUS
