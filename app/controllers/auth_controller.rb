@@ -14,7 +14,7 @@ class AuthController < ApplicationController
       username = auth_hash["data"]["user"]
       role = auth_hash["data"]["user_info"]["role"]
 
-      Rails.logger.info "Login attempt with role #{role}."
+      logger.debug "Login attempt with role #{role}."
 
       if role == "Admin" or role == "Officer"
         set_current_user username, role
