@@ -27,7 +27,7 @@ class AuthController < ApplicationController
       error_notice = "Error: #{auth_hash["data"]["error"]}"
     end
 
-    if error_notice 
+    if error_notice
       flash[:notice] = error_notice
       render :index
     end
