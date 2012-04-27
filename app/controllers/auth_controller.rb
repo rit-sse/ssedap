@@ -18,7 +18,6 @@ class AuthController < ApplicationController
 
       if role == "Admin" or role == "Officer"
         set_current_user username, role
-
         redirect_to dashboard_path, notice: "Logged in successfully."
       else
         error_notice = "Error: insufficient privileges."
